@@ -8,13 +8,15 @@ export const createField = (fields = {}) => {
     select: Select = "select",
     textarea: TextArea = "textarea",
     checkbox: Checkbox = "input",
+    toggle: Toggle = "input",
     formGroup: FormGroup = "div",
     label: Label = "label",
     helpText: HelpText = "span",
+    customTypes = {},
     selectPathSpec = "target.value",
     fastMode = false
   } = fields;
-
+console.log(customTypes);
   const helpText = (name, touched, errors) =>
     touched[name] &&
     errors[name] && <HelpText variant="danger">{errors[name]}</HelpText>;
@@ -78,7 +80,7 @@ export const createField = (fields = {}) => {
       <Select
         {...field}
         {...props}
-        onChange={evt => setFieldValue(field.name, evt ? evt.value : "")}
+        onChange={evt => setFieldValue(field.name, get(evt, selectPathSpec, ""))}
         label={label}
       />
     </CustomFormGroup>
@@ -101,12 +103,12 @@ export const createField = (fields = {}) => {
         {...field}
         {...props}
         label={label}
-        checked={get(form, `values.${field.name}`, false)}
+        checked={checked instanceof 'Function' ? checked(form) : checked}
       />
     </CustomFormGroup>
   );
 
-  const inputs = {
+  const inputs = Object.assign({
     text: CustomInput,
     number: CustomInput,
     email: CustomInput,
@@ -123,11 +125,12 @@ export const createField = (fields = {}) => {
     checkbox: CustomCheckBox,
     "datetime-local": CustomInput,
     select: CustomSelect,
-    textarea: CustomTextarea
-  };
+    textarea: CustomTextarea,
+  }, customTypes);
 
   const excludedFastTypes = ["select"];
 
+  // Experimental
   const FieldComponet = fastMode ? FastField : Field;
 
   return ({ type = "text", ...props }) => {
