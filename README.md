@@ -5,8 +5,6 @@
 
 ## Installation
 
-OS X & Linux:
-
 ```sh
 npm install formik-custom-fields --save
 ```
