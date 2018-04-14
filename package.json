@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "watch -p src/**/* -c 'babel src --out-dir dist'",
+    "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
