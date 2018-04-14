@@ -1,0 +1,37 @@
+{
+  "name": "formik-custom-fields",
+  "version": "0.0.1",
+  "description": "Setup input fields and reuse them, used with Formik",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "watch -p src/**/* -c 'babel src --out-dir dist'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "formik": "1.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "formik": "^1.0.0-alpha.4",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.1",
+    "prettier": "1.10.1",
+    "react": "^16.3.1",
+    "watch-cli": "^0.2.3"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier src/* --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "lodash.get": "^4.4.2"
+  }
+}
