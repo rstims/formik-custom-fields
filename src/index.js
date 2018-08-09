@@ -16,7 +16,7 @@ export const createField = (fields = {}) => {
     selectPathSpec = "target.value",
     fastMode = false
   } = fields;
-console.log(customTypes);
+
   const helpText = (name, touched, errors) =>
     touched[name] &&
     errors[name] && <HelpText variant="danger">{errors[name]}</HelpText>;
